@@ -1,14 +1,84 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 번호 추천</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4ff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4a76f7;
+            color: white;
+            padding: 25px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #container {
+            margin-top: 40px;
+        }
+        #btn {
+            background-color: #4a76f7;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        #btn:hover {
+            background-color: #345de2;
+        }
+        .set {
+            margin-top: 30px;
+        }
+        .ball {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            margin: 5px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid #4a76f7;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+
+<header>로또 번호 추천기</header>
+
+<div id="container">
+    <button id="btn" onclick="generateLotto()">5세트 추천 받기</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    function generateLottoSet() {
+        let numbers = [];
+        while (numbers.length < 6) {
+            let num = Math.floor(Math.random() * 45) + 1;
+            if (!numbers.includes(num)) numbers.push(num);
+        }
+        return numbers.sort((a, b) => a - b);
+    }
+
+    function generateLotto() {
+        let html = "";
+        for (let i = 1; i <= 5; i++) {
+            const lotto = generateLottoSet();
+            const balls = lotto.map(n => `<div class='ball'>${n}</div>`).join('');
+            html += `<div class='set'><strong>세트 ${i}:</strong> ${balls}</div>`;
+        }
+        document.getElementById("result").innerHTML = html;
+    }
+</script>
+
 </body>
 </html>
