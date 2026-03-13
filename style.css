@@ -1,1 +1,101 @@
-/* Add styles here */
+:root {
+    --bg-color: #f0f4ff;
+    --text-color: #333;
+    --header-bg: #4a76f7;
+    --header-text: white;
+    --btn-bg: #4a76f7;
+    --btn-hover: #345de2;
+    --ball-bg: #fff;
+    --ball-border: #4a76f7;
+    --ball-text: #333;
+    --container-bg: transparent;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg: #1f1f1f;
+    --header-text: #ffffff;
+    --btn-bg: #3700b3;
+    --btn-hover: #6200ee;
+    --ball-bg: #1e1e1e;
+    --ball-border: #bb86fc;
+    --ball-text: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+}
+
+#container {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+#btn {
+    background-color: var(--btn-bg);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#btn:hover {
+    background-color: var(--btn-hover);
+}
+
+.set {
+    margin-top: 30px;
+    padding: 15px;
+}
+
+.ball {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: var(--ball-bg);
+    border: 2px solid var(--ball-border);
+    color: var(--ball-text);
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+#theme-toggle {
+    background: none;
+    border: 1px solid var(--header-text);
+    color: var(--header-text);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+#theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
