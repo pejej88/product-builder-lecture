@@ -1,20 +1,50 @@
-function generateLottoSet() {
-    let numbers = [];
-    while (numbers.length < 6) {
-        let num = Math.floor(Math.random() * 45) + 1;
-        if (!numbers.includes(num)) numbers.push(num);
-    }
-    return numbers.sort((a, b) => a - b);
+const URL = "https://teachablemachine.withgoogle.com/models/LafRxp6tR/"; // 사용자가 제공한 URL로 변경됨
+
+let model, labelContainer, maxPredictions;
+
+async function init() {
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+
+    document.getElementById('loading').style.display = 'block';
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+    document.getElementById('loading').style.display = 'none';
 }
 
-function generateLotto() {
-    let html = "";
-    for (let i = 1; i <= 5; i++) {
-        const lotto = generateLottoSet();
-        const balls = lotto.map(n => `<div class='ball'>${n}</div>`).join('');
-        html += `<div class='set'><strong>세트 ${i}:</strong> ${balls}</div>`;
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        const output = document.getElementById('image-preview');
+        output.src = reader.result;
+        output.style.display = 'block';
+        document.getElementById('predict-btn').style.display = 'inline-block';
+        document.getElementById('label-container').innerHTML = "";
     }
-    document.getElementById("result").innerHTML = html;
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+async function predict() {
+    if (!model) {
+        await init();
+    }
+    const image = document.getElementById("image-preview");
+    const prediction = await model.predict(image);
+    
+    labelContainer = document.getElementById("label-container");
+    labelContainer.innerHTML = "";
+
+    // 결과 정렬 (가장 높은 확률 순)
+    prediction.sort((a, b) => b.probability - a.probability);
+
+    for (let i = 0; i < maxPredictions; i++) {
+        const classPrediction =
+            prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
+        const div = document.createElement("div");
+        div.className = "result-item";
+        div.innerHTML = classPrediction;
+        labelContainer.appendChild(div);
+    }
 }
 
 function toggleTheme() {

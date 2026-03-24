@@ -36,13 +36,12 @@ body {
 header {
     background-color: var(--header-bg);
     color: var(--header-text);
-    padding: 25px;
+    padding: 10px 40px;
     font-size: 24px;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 40px;
 }
 
 #container {
@@ -50,7 +49,7 @@ header {
     padding: 20px;
 }
 
-#btn {
+#upload-btn, #predict-btn {
     background-color: var(--btn-bg);
     color: white;
     border: none;
@@ -61,28 +60,25 @@ header {
     transition: background-color 0.3s;
 }
 
-#btn:hover {
+#upload-btn:hover, #predict-btn:hover {
     background-color: var(--btn-hover);
 }
 
-.set {
-    margin-top: 30px;
-    padding: 15px;
+#image-preview-container {
+    max-width: 400px;
+    margin: 20px auto;
 }
 
-.ball {
-    display: inline-block;
-    width: 45px;
-    height: 45px;
-    line-height: 45px;
-    margin: 5px;
-    border-radius: 50%;
+.result-item {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    padding: 10px;
     background-color: var(--ball-bg);
     border: 2px solid var(--ball-border);
-    color: var(--ball-text);
-    font-size: 20px;
-    font-weight: bold;
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    border-radius: 8px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #theme-toggle {
@@ -150,4 +146,3 @@ header {
     max-width: 800px;
     padding: 0 20px;
 }
-
