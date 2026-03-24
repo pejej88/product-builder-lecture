@@ -1,148 +1,206 @@
 :root {
-    --bg-color: #f0f4ff;
+    --primary-color: #4a90e2;
+    --bg-color: #f8f9fa;
     --text-color: #333;
-    --header-bg: #4a76f7;
-    --header-text: white;
-    --btn-bg: #4a76f7;
-    --btn-hover: #345de2;
-    --ball-bg: #fff;
-    --ball-border: #4a76f7;
-    --ball-text: #333;
-    --container-bg: transparent;
+    --card-bg: #ffffff;
+    --header-bg: #ffffff;
+    --footer-bg: #333;
+    --footer-text: #fff;
 }
 
 [data-theme="dark"] {
+    --primary-color: #64b5f6;
     --bg-color: #121212;
     --text-color: #e0e0e0;
-    --header-bg: #1f1f1f;
-    --header-text: #ffffff;
-    --btn-bg: #3700b3;
-    --btn-hover: #6200ee;
-    --ball-bg: #1e1e1e;
-    --ball-border: #bb86fc;
-    --ball-text: #ffffff;
+    --card-bg: #1e1e1e;
+    --header-bg: #1e1e1e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    text-align: center;
-    margin: 0;
-    padding: 0;
+    line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* Header & Nav */
 header {
     background-color: var(--header-bg);
-    color: var(--header-text);
-    padding: 10px 40px;
-    font-size: 24px;
-    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#container {
-    margin-top: 40px;
-    padding: 20px;
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
 }
 
-#upload-btn, #predict-btn {
-    background-color: var(--btn-bg);
+#main-nav ul {
+    display: flex;
+    list-style: none;
+}
+
+#main-nav li {
+    margin: 0 15px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#main-nav a:hover {
+    color: var(--primary-color);
+}
+
+/* Container */
+#container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.content-section {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.content-section h1, .content-section h2, .content-section h3 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.content-section p {
+    margin-bottom: 15px;
+}
+
+.content-section ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Test Area */
+.test-area {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    border: 2px dashed var(--primary-color);
+}
+
+#upload-btn, .submit-btn, #predict-btn {
+    background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 18px;
+    padding: 12px 24px;
+    font-size: 1rem;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
-#upload-btn:hover, #predict-btn:hover {
-    background-color: var(--btn-hover);
+#upload-btn:hover, .submit-btn:hover {
+    background-color: #357abd;
+    transform: translateY(-2px);
 }
 
-#image-preview-container {
-    max-width: 400px;
-    margin: 20px auto;
+/* Form */
+.form-group {
+    margin-bottom: 15px;
 }
 
-.result-item {
-    font-size: 1.2rem;
-    margin: 10px 0;
-    padding: 10px;
-    background-color: var(--ball-bg);
-    border: 2px solid var(--ball-border);
-    border-radius: 8px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#theme-toggle {
-    background: none;
-    border: 1px solid var(--header-text);
-    color: var(--header-text);
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s;
-}
-
-#theme-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-#contact-section {
-    margin: 50px auto;
-    padding: 30px;
-    max-width: 500px;
-    background-color: var(--ball-bg);
-    border: 1px solid var(--ball-border);
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-#contact-form input, #contact-form textarea {
+input[type="email"], textarea {
+    width: 100%;
     padding: 12px;
-    border: 1px solid var(--ball-border);
-    border-radius: 6px;
-    background-color: var(--bg-color);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: var(--bg-color);
     color: var(--text-color);
-    font-family: inherit;
 }
 
-#contact-form textarea {
-    height: 100px;
+textarea {
+    height: 120px;
     resize: vertical;
 }
 
-#contact-form button {
-    background-color: var(--btn-bg);
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
+/* Footer */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 40px 20px;
+    margin-top: 60px;
+    text-align: center;
 }
 
-#contact-form button:hover {
-    background-color: var(--btn-hover);
+.footer-nav {
+    margin-top: 15px;
 }
 
-#disqus_thread {
-    margin: 50px auto;
-    max-width: 800px;
-    padding: 0 20px;
+.footer-nav a {
+    color: #ccc;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.footer-nav a:hover {
+    color: #fff;
+}
+
+/* Loader */
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    #main-nav li {
+        margin: 5px 10px;
+    }
 }
